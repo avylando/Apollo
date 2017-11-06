@@ -101,10 +101,15 @@ gulp.task("serve", function() {
 });
 
 gulp.task("bs-minify", function() {
-  return gulp.src("css/bootstrap.css")
+  return gulp.src([
+    "css/bootstrap.css",
+    "css/bootstrap-theme.css"
+  ], {
+    base:"."
+  })
   .pipe(minify())
-  .pipe(rename("bootstrap.min.css"))
-  .pipe (gulp.dest("build/css"));
+  .pipe(rename({suffix: ".min"}))
+  .pipe (gulp.dest("build"));
 });
 
 gulp.task("copy", function() {
